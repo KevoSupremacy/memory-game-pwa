@@ -11,10 +11,5 @@ export class HomeComponent {
 
   constructor(private router: Router) {}
 
-  empezarJuego(): void {
-    if (this.nombreJugador.trim().length > 0) {
-      this.router.navigate(['/game'], { queryParams: { nombre: this.nombreJugador } });
-    }
-  }
 }
 

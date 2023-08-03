@@ -6,15 +6,21 @@ import { HomeComponent } from './home/home.component';
 import { GameComponent } from './game/game.component';
 import { FormsModule } from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { TextoTituloComponent } from './texto-titulo/texto-titulo.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TextoInputJugadorComponent } from './texto-input-jugador/texto-input-jugador.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    GameComponent
+    GameComponent,
+    TextoTituloComponent,
+    TextoInputJugadorComponent
   ],
   imports: [
     FormsModule,
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
