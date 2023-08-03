@@ -1,0 +1,48 @@
+<div class="game-div">
+  <h2>Bienvenido, {{ nombreJugador }}!</h2>
+  <p>Puntos: {{ puntos }}</p>
+  <div>
+    <label class="label-dificultad" for="dificultad">Nivel de dificultad:</label>
+    <select [(ngModel)]="dificultad" id="dificultad">
+      <option value="bajo">Bajo</option>
+      <option value="medio">Medio</option>
+      <option value="alto">Alto</option>
+    </select>
+    <button (click)="empezarJuego()">Comenzar el juego</button>
+  </div>
+  <div *ngIf="numeroAMemorizar">
+    <p>¿En que casilla esta el numero {{numCorrecto}}?</p>
+  </div>
+  <div *ngIf="juegoEmpezado" class="contenedor-cartas">
+    <div
+      class="numero"
+      *ngFor="let cell of mostrarNumeros; let i = index"
+      [ngClass]="{
+        tipoCelda1: cell !== '?' && !juegoTerminado && esClickable,
+        tipoCelda2: i === posicionCeldaCorrecta && !juegoTerminado && !esClickable,
+        tipoCelda3: i !== posicionCeldaCorrecta && !juegoTerminado && !esClickable
+      }"
+      (click)="clickCelda(i)"
+    >
+      {{ cell }}
+    </div>
+  </div>
+  <div *ngIf="juegoEnCurso" class="contenedor-cartas">
+    <div
+      class="numero"
+      *ngFor="let cell of mostrarNumeros; let i = index"
+      [ngClass]="{
+        correcto: i === posicionCeldaCorrecta,
+        erroneo: i !== posicionCeldaCorrecta
+      }"
+      (click)="clickCelda(i)"
+    >
+      {{ cell }}
+    </div>
+  </div>
+  <div *ngIf="juegoTerminado">
+    <p>Has perdido.</p>
+    <button class="boton-terminar" (click)="terminarJuego()">Volver a jugar</button>
+    <button class="boton-cambiar" (click)="cambiarJugador()">Cambiar de jugador</button>
+  </div>
+</div>
